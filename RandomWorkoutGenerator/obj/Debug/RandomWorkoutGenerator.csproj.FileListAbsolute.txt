@@ -1,0 +1,10 @@
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\bin\Debug\RandomWorkoutGenerator.exe.config
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\bin\Debug\RandomWorkoutGenerator.exe
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\bin\Debug\RandomWorkoutGenerator.pdb
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.csprojAssemblyReference.cache
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.Form1.resources
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.Properties.Resources.resources
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.csproj.GenerateResource.cache
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.csproj.CoreCompileInputs.cache
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.exe
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.pdb
