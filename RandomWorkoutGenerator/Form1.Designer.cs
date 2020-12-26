@@ -43,23 +43,28 @@ namespace RandomWorkoutGenerator
             this.radio_10 = new System.Windows.Forms.RadioButton();
             this.sayi_combo = new System.Windows.Forms.ComboBox();
             this.btn_clean = new System.Windows.Forms.Button();
+            this.dgv_workout = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btn_save_workout = new System.Windows.Forms.Button();
+            this.btn_show_exercises = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_workout)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(582, 99);
+            this.listBox1.Location = new System.Drawing.Point(522, 51);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(178, 199);
             this.listBox1.TabIndex = 0;
             // 
             // create_btn
             // 
-            this.create_btn.Location = new System.Drawing.Point(291, 301);
+            this.create_btn.Location = new System.Drawing.Point(376, 308);
             this.create_btn.Name = "create_btn";
-            this.create_btn.Size = new System.Drawing.Size(94, 31);
+            this.create_btn.Size = new System.Drawing.Size(73, 31);
             this.create_btn.TabIndex = 1;
             this.create_btn.Text = "Oluştur";
             this.create_btn.UseVisualStyleBackColor = true;
@@ -73,7 +78,7 @@ namespace RandomWorkoutGenerator
             "Full Body",
             "Cardio",
             "ABS"});
-            this.antreman_combo.Location = new System.Drawing.Point(109, 101);
+            this.antreman_combo.Location = new System.Drawing.Point(173, 110);
             this.antreman_combo.Name = "antreman_combo";
             this.antreman_combo.Size = new System.Drawing.Size(276, 27);
             this.antreman_combo.TabIndex = 2;
@@ -81,18 +86,19 @@ namespace RandomWorkoutGenerator
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(465, 365);
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(37, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(130, 22);
             this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.label1.Text = "Hareket Sayısı:";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.radio_40);
             this.groupBox1.Controls.Add(this.radio_30);
             this.groupBox1.Controls.Add(this.radio_20);
-            this.groupBox1.Location = new System.Drawing.Point(109, 156);
+            this.groupBox1.Location = new System.Drawing.Point(173, 163);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(276, 44);
             this.groupBox1.TabIndex = 7;
@@ -137,7 +143,7 @@ namespace RandomWorkoutGenerator
             this.groupBox2.Controls.Add(this.radio_20dinlen);
             this.groupBox2.Controls.Add(this.radio_15);
             this.groupBox2.Controls.Add(this.radio_10);
-            this.groupBox2.Location = new System.Drawing.Point(109, 225);
+            this.groupBox2.Location = new System.Drawing.Point(173, 232);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(276, 44);
             this.groupBox2.TabIndex = 8;
@@ -191,27 +197,70 @@ namespace RandomWorkoutGenerator
             "10",
             "11",
             "12"});
-            this.sayi_combo.Location = new System.Drawing.Point(109, 51);
+            this.sayi_combo.Location = new System.Drawing.Point(173, 60);
             this.sayi_combo.Name = "sayi_combo";
             this.sayi_combo.Size = new System.Drawing.Size(276, 27);
             this.sayi_combo.TabIndex = 9;
             // 
             // btn_clean
             // 
-            this.btn_clean.Location = new System.Drawing.Point(171, 301);
+            this.btn_clean.Location = new System.Drawing.Point(276, 308);
             this.btn_clean.Name = "btn_clean";
-            this.btn_clean.Size = new System.Drawing.Size(94, 31);
+            this.btn_clean.Size = new System.Drawing.Size(73, 31);
             this.btn_clean.TabIndex = 10;
             this.btn_clean.Text = "Temizle";
             this.btn_clean.UseVisualStyleBackColor = true;
             this.btn_clean.Click += new System.EventHandler(this.btn_clean_Click);
+            // 
+            // dgv_workout
+            // 
+            this.dgv_workout.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_workout.Location = new System.Drawing.Point(522, 267);
+            this.dgv_workout.Name = "dgv_workout";
+            this.dgv_workout.RowHeadersWidth = 25;
+            this.dgv_workout.Size = new System.Drawing.Size(531, 283);
+            this.dgv_workout.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Location = new System.Drawing.Point(30, 115);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(137, 22);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Antreman Türü:";
+            // 
+            // btn_save_workout
+            // 
+            this.btn_save_workout.Location = new System.Drawing.Point(173, 308);
+            this.btn_save_workout.Name = "btn_save_workout";
+            this.btn_save_workout.Size = new System.Drawing.Size(73, 31);
+            this.btn_save_workout.TabIndex = 13;
+            this.btn_save_workout.Text = "Kaydet";
+            this.btn_save_workout.UseVisualStyleBackColor = true;
+            this.btn_save_workout.Click += new System.EventHandler(this.btn_save_workout_Click);
+            // 
+            // btn_show_exercises
+            // 
+            this.btn_show_exercises.Location = new System.Drawing.Point(276, 390);
+            this.btn_show_exercises.Name = "btn_show_exercises";
+            this.btn_show_exercises.Size = new System.Drawing.Size(73, 31);
+            this.btn_show_exercises.TabIndex = 14;
+            this.btn_show_exercises.Text = "Görüntüle";
+            this.btn_show_exercises.UseVisualStyleBackColor = true;
+            this.btn_show_exercises.Click += new System.EventHandler(this.btn_show_exercises_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1065, 665);
+            this.Controls.Add(this.btn_show_exercises);
+            this.Controls.Add(this.btn_save_workout);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dgv_workout);
             this.Controls.Add(this.btn_clean);
             this.Controls.Add(this.sayi_combo);
             this.Controls.Add(this.groupBox2);
@@ -229,6 +278,7 @@ namespace RandomWorkoutGenerator
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_workout)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,6 +300,10 @@ namespace RandomWorkoutGenerator
         private System.Windows.Forms.RadioButton radio_10;
         private System.Windows.Forms.ComboBox sayi_combo;
         private System.Windows.Forms.Button btn_clean;
+        private System.Windows.Forms.DataGridView dgv_workout;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_save_workout;
+        private System.Windows.Forms.Button btn_show_exercises;
     }
 }
 

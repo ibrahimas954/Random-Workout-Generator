@@ -8,3 +8,4 @@ C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\De
 C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.csproj.CoreCompileInputs.cache
 C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.exe
 C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.pdb
+C:\Users\asibr\source\repos\RandomWorkoutGenerator\RandomWorkoutGenerator\obj\Debug\RandomWorkoutGenerator.Egzersizler.resources

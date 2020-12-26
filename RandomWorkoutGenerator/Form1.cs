@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,18 @@ namespace RandomWorkoutGenerator
 {
     public partial class Form1 : Form
     {
+        SqlConnection conn = new SqlConnection("Data Source=.;Initial Catalog=deneme;Integrated Security=True");
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        DataTable dt;
+        DataSet ds;
+
         String[] LowerBody = { "Air Squat", "Lunge", "Backward Lunge", "Glute Bridge", "Plyo Lunge", "Calf Raise", "Squat Jump", "Squat Thrusht", "Shuffle", "Squat Rotate","Calf raise Squat" };  //11
         String[] UpperBody = { "Push Up", "Wide Push Up", "Narrow Push Up", "Crawl Out to Push Up", "Bear Crawl", "Barfix", "Super Man", "Pike Push Up", "Plyo Push Up", "Wide Barfix", "Narrow Barfix" }; //11
         String[] Core = { "Plank", "Mountain Climber", "Flutter Kicks", "Russian Twist", "Leg Raise", "Bicycle Crunch", "Sit Up", "Leg Lift Push", "Reverse Crunch", "Half L-Sit" };
         String[] HIIT = { "Jumping Jack", "Burpee", "Jump rope", "HighKnees", "Plank To Knee Tap", "Cross Skater" };
-        String[] CreatedWorkout = new string[12];
+        String[] CreatedWorkout = new string[13];
+        public string content_fromDB;
 
         public Form1()
         {
@@ -25,8 +33,7 @@ namespace RandomWorkoutGenerator
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-          
+            WorkoutGridRefresh();
         }
 
         private void create_btn_Click(object sender, EventArgs e)
@@ -34,6 +41,7 @@ namespace RandomWorkoutGenerator
             if (antreman_combo.Text == "Full Body")
             {
                 GenerateFullBodyWorkout(Convert.ToInt32(sayi_combo.Text), CheckedWorkTime(), CheckedRestTime());
+                
             }
 
             else if (antreman_combo.Text == "Cardio")
@@ -88,7 +96,7 @@ namespace RandomWorkoutGenerator
 
             else if (radio_15.Checked)
             {
-                return_rest = 30;
+                return_rest = 15;
             }
 
             else if (radio_20dinlen.Checked)
@@ -164,12 +172,35 @@ namespace RandomWorkoutGenerator
 
         private void GenerateFullBodyWorkout(int exercise_num, int work_time, int rest_time)
         {
-            ShuffleUpperLower(exercise_num);   
+            string[] shuffled_array = ShuffleUpperLower();
+            int exercise_element, i = 0;
+            Random rnd = new Random();
+
+            while (i < exercise_num)
+            {
+                exercise_element = rnd.Next(0, shuffled_array.Length);
+
+                if (i == 0)
+                {
+                    CreatedWorkout[i] = shuffled_array[exercise_element];
+                    listBox1.Items.Add(CreatedWorkout[i] + " " + work_time.ToString() + " " + "Sn Egzersiz");
+                    listBox1.Items.Add(rest_time.ToString() + " " + "Sn Dinlenme");
+                    i++;
+                }
+
+                else if (!CreatedWorkout.Contains(shuffled_array[exercise_element]))
+                {
+                    CreatedWorkout[i] = shuffled_array[exercise_element];
+                    listBox1.Items.Add(CreatedWorkout[i] + " " + work_time.ToString() + " " + "Sn Egzersiz");
+                    listBox1.Items.Add(rest_time.ToString() + " " + "Sn Dinlenme");
+                    i++;
+                }
+            }
         }
 
-        private void ShuffleUpperLower(int exercise_num)
+        private string[] ShuffleUpperLower()
         {
-          // Upper ve Lower adlı array bir listeye kopyalanacak ve arasında rastgele seçim yapılacak seçim oranı %50 olacaktır.
+            return UpperBody.Concat(LowerBody).ToArray();            
         }
 
         private void CleanWorkoutArray()
@@ -179,6 +210,69 @@ namespace RandomWorkoutGenerator
             create_btn.Enabled = true;
         }
 
-       
+        private void WorkoutGridRefresh()
+        {
+            conn.Open();
+            cmd = new SqlCommand("Select * from workout", conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgv_workout.DataSource = dt;
+            conn.Close();
+        }
+
+        private void WorkoutSaveToDB()
+        {
+            string context = "";
+
+            foreach (string exercise in listBox1.Items)
+            {
+                context += exercise + "\n";
+            }
+
+            conn.Open();
+            cmd = new SqlCommand("insert into workout(workout_content,workout_exercise_time, workout_rest_time, workout_total_time) values (@ct,@et,@rt,@tt)",conn);
+            cmd.Parameters.AddWithValue("@ct", context);
+            cmd.Parameters.AddWithValue("@et", CheckedWorkTime());
+            cmd.Parameters.AddWithValue("@rt", CheckedRestTime());
+            cmd.Parameters.AddWithValue("@tt", Convert.ToInt32(CalculateTotalWorkoutTime(Convert.ToInt32(sayi_combo.Text), CheckedWorkTime(), CheckedRestTime())));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            WorkoutGridRefresh();
+        }
+
+        private void btn_save_workout_Click(object sender, EventArgs e)
+        {
+            WorkoutSaveToDB();  
+        }
+
+        private float CalculateTotalWorkoutTime(int exercise_num, int exercise_time, int rest_time)
+        {
+            return (exercise_time + rest_time) * exercise_num  - rest_time;
+        }
+
+        private string SelectExercisesFromDB()
+        {
+
+            cmd = new SqlCommand("SELECT workout_content FROM workout WHERE workout_no=5", conn);
+            conn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+            content_fromDB = dr["workout_content"].ToString();
+            dr.Close();
+
+            conn.Close();
+
+            return content_fromDB;
+        }
+
+        private void btn_show_exercises_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(SelectExercisesFromDB());
+            Egzersizler frm = new Egzersizler();
+            frm.Show();
+            this.Hide();
+        }
     }
 }
