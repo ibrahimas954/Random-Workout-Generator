@@ -24,7 +24,7 @@ namespace RandomWorkoutGenerator
         String[] Core = { "Plank", "Mountain Climber", "Flutter Kicks", "Russian Twist", "Leg Raise", "Bicycle Crunch", "Sit Up", "Leg Lift Push", "Reverse Crunch", "Half L-Sit" };
         String[] HIIT = { "Jumping Jack", "Burpee", "Jump rope", "HighKnees", "Plank To Knee Tap", "Cross Skater" };
         String[] CreatedWorkout = new string[13];
-        public string content_fromDB;
+        public  string content_fromDB;
 
         public Form1()
         {
@@ -269,8 +269,8 @@ namespace RandomWorkoutGenerator
 
         private void btn_show_exercises_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(SelectExercisesFromDB());
-            Egzersizler frm = new Egzersizler();
+            content_fromDB = SelectExercisesFromDB();
+            Egzersizler frm = new Egzersizler(content_fromDB);
             frm.Show();
             this.Hide();
         }
